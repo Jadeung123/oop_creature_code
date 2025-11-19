@@ -68,6 +68,31 @@ class SwimmingCreature(Creature):
             target.hp = 0
         print(f"{target.name} HP is now {target.hp}")
 
+# ===============================
+# FireCreature Branch
+# ===============================
+
+class FireCreature(Creature):
+    def __init__(self, name, hp, attack_power):
+        super().__init__(name, hp, attack_power)
+        self.fire_level = 0
+
+    def emit_fire(self, new_fire_level):
+        self.fire_level = new_fire_level
+        print(f"{self.name} emits fire to level {self.fire_level}.")
+
+    def attack(self, target):
+        if not self.is_alive():
+            print(f"{self.name} cannot attack because it is defeated.")
+            return
+
+        print(f"{self.name} attacks using fire at level {self.fire_level}!")
+        print(f"It burns {target.name} for {self.attack_power} damage!")
+        target.hp -= self.attack_power
+        if target.hp < 0:
+            target.hp = 0
+        print(f"{target.name} HP is now {target.hp}")
+
 if __name__ == "__main__":
     print("=== Creature Class Tests ===\n")
 
@@ -139,6 +164,18 @@ if __name__ == "__main__":
 
     dummy = Creature("Practice Dummy", 40, 0)
     serpent.attack(dummy)
+    print(f"Dummy HP should be 33 → Actual: {dummy.hp}")
+    print()
+    print("=== Tests Completed ===")
+    print()
+
+    print("=== FireCreature Tests ===\n")
+    fire = FireCreature("Fire Force", 60, 7)
+    fire.emit_fire(30)
+    print(f"Fire level should be 30 → Actual: {fire.fire_level}")
+
+    dummy = Creature("Practice Dummy", 40, 0)
+    fire.attack(dummy)
     print(f"Dummy HP should be 33 → Actual: {dummy.hp}")
     print()
     print("=== Tests Completed ===")
