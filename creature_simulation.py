@@ -69,7 +69,7 @@ class SwimmingCreature(Creature):
         print(f"{target.name} HP is now {target.hp}")
 
 # ===============================
-# SwimmingCreature Branch
+# FireCreature Branch
 # ===============================
 
 class FireCreature(Creature):
